@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="/webjars/bootstrap/5.1.0/css/bootstrap.min.css">
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Viaggio - Add new country</title>
+</head>
+<body>
+
+<div class="container my-4">
+
+    <h1>Add New Country</h1>
+
+    <p style="margin-top:20px">
+        <a th:href="@{/}" class="btn btn-primary btn-smb-mb-3">Home</a>&nbsp;&nbsp;&nbsp;
+        <a th:href="@{/logout}" class="btn btn-info btn-smb-mb-3">Logout</a>&nbsp;&nbsp;&nbsp;
+    </p>
+
+    <form action="#" name="add_new_country" th:action="@{/countries/save_country}" th:object="${country}" method="POST">
+        <div class="mb-4">
+            <label for="countryName" class="form-label">Country Name</label>
+            <input type="text" class="form-control" id="countryName"
+                   th:field="*{countryName}" required aria-describedby="countryNameHelp"
+                   placeholder="Country Name">
+            <div id="countryNameHelp" class="form-text">MAX 255 characters.</div>
+            <span th:if="${#fields.hasErrors('countryName')}"
+                  th:errors="*{countryName}" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Add New Country</button>
+    </form>
+
+</div>
+</body>
+</html>

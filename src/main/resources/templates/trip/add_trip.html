@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Add new Trip</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container my-4">
+
+        <h1>Add New Trip</h1>
+
+        <p style="margin-top:20px">
+            <a th:href="@{/}" class="btn btn-primary btn-smb-mb-3">Home</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/trips/all_trips}" class="btn btn-primary btn-smb-mb-3">View All trips</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/logout}" class="btn btn-info btn-smb-mb-3">Logout</a>&nbsp;&nbsp;&nbsp;
+        </p>
+
+        <div class="col-md-4">
+
+            <form action="#" name="add_new_trip" th:action="@{/trips/save_trip}" th:object="${trip}" method="POST">
+                <div class="form-group">
+                    <label for="tripName">Trip name</label>
+                    <input type="text" class="form-control" id="tripName"
+                           th:field="*{tripName}" placeholder="Trip name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Trip country</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                           th:field="*{tripCountry}" placeholder="Trip country">
+                </div>
+                <div class="form-group">
+                    <label for="tripStartDate">Trip Start date</label>
+                    <input type="text" class="form-control datetimepicker-input" id="tripStartDate"
+                           th:field="*{tripStartDate}" placeholder="Trip Start date">
+                </div>
+                <div class="form-group">
+                    <label for="tripEndDate">Trip End date</label>
+                    <input type="text" class="form-control datetimepicker-input" id="tripEndDate"
+                           th:field="*{tripEndDate}" placeholder="Trip End date">
+                </div>
+                <div class="form-group">
+                    <label for="tripNumberOfPAX">Number of PAX in group</label>
+                    <input type="text" class="form-control" id="tripNumberOfPAX"
+                           th:field="*{tripNumberOfPAX}" placeholder="Number of PAX">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Trip</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

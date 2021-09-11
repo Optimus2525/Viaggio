@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Update trip</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <div class="container my-2">
+
+        <div class="container my-2">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header"><i class="fa fa-laptop"></i>Update trip</h2>
+                </div>
+            </div>
+
+            <p>
+                <a th:href="@{/}" class="btn btn-primary btn-smb-mb-3">Home</a>&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/trips/all_trips}" class="btn btn-primary btn-smb-mb-3">View All trips</a>&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/logout}" class="btn btn-info btn-smb-mb-3">Logout</a>&nbsp;&nbsp;&nbsp;
+            </p>
+
+
+            <div class="panel-body">
+
+                <form role="form" action="#" name="update_trip"
+                      th:action="@{/trips/save_trip}" th:object="${trip}" method="POST">
+
+                    <!-- Hidden ID field to handle update -->
+                    <input type="hidden" th:field="*{tripId}"/>
+
+                    <div class="form-group">
+                        <label for="tripName">Trip name</label>
+                        <input type="text" class="form-control" id="tripName"
+                               th:field="*{tripName}" placeholder="Trip name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Trip country</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1"
+                               th:field="*{tripCountry}" placeholder="Trip country">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripStartDate">Trip Start date</label>
+                        <input type="text" class="form-control" id="tripStartDate"
+                               th:field="*{tripStartDate}" placeholder="Trip Start date">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripEndDate">Trip End date</label>
+                        <input type="text" class="form-control" id="tripEndDate"
+                               th:field="*{tripEndDate}" placeholder="Trip End date">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripNumberOfPAX">Number of PAX in group</label>
+                        <input type="text" class="form-control" id="tripNumberOfPAX"
+                               th:field="*{tripNumberOfPAX}" placeholder="Number of PAX">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update Trip</button>
+
+                </form>
+            </div>
+
+
+            <!--            &lt;!&ndash; Hidden ID field to handle update &ndash;&gt;-->
+            <!--            <input type="hidden" th:field="*{tripId}"/>-->
+
+            <!--            <div class="mb-4">-->
+            <!--                <label for="tripName" class="form-label">Trip Name</label>-->
+            <!--                <input type="text" class="form-control" id="tripName" th:field="*{tripName}" required-->
+            <!--                       aria-describedby="tripNameHelp"-->
+            <!--                       placeholder="Trip Name">-->
+            <!--                <div id="tripNameHelp" class="form-text">MAX 255 characters.</div>-->
+            <!--                <span th:if="${#fields.hasErrors('tripName')}"-->
+            <!--                      th:errors="*{tripName}" class="text-danger"></span>-->
+            <!--            </div>-->
+            <!--            <div class="mb-4">-->
+            <!--                <label for="tripCountry" class="form-label">Trip Destination Country</label>-->
+            <!--                <input type="text" class="form-control" id="tripCountry" th:field="*{tripCountry}"-->
+            <!--                       required-->
+            <!--                       aria-describedby="tripCountryHelp">-->
+            <!--                <div id="tripCountryHelp" class="form-text">Trip destination country.</div>-->
+            <!--                <span th:if="${#fields.hasErrors('tripCountry')}"-->
+            <!--                      th:errors="*{tripCountry}" class="text-danger"></span>-->
+            <!--            </div>-->
+            <!--            <div class="mb-4">-->
+            <!--                <div class="row">-->
+            <!--                    <div class="col">-->
+            <!--                        <label for="tripStartDate" class="form-label">Trip Start Date</label>-->
+            <!--                        <input type="text" class="form-control" id="tripStartDate" th:field="*{tripStartDate}"-->
+            <!--                               required-->
+            <!--                               aria-describedby="tripStartDateHelp">-->
+            <!--                        <div id="tripStartDateHelp" class="form-text">Can not be today or in past.</div>-->
+            <!--                        <span th:if="${#fields.hasErrors('tripStartDate')}"-->
+            <!--                              th:errors="*{tripStartDate}" class="text-danger"></span>-->
+            <!--                    </div>-->
+            <!--                    <div class="col">-->
+            <!--                        <label for="tripEndDate" class="form-label">Trip End Date</label>-->
+            <!--                        <input type="text" class="form-control" id="tripEndDate" th:field="*{tripEndDate}"-->
+            <!--                               required-->
+            <!--                               aria-describedby="tripEndDateHelp">-->
+            <!--                        <div id="tripEndDateHelp" class="form-text">Can not be before trip Start Date.</div>-->
+            <!--                        <span th:if="${#fields.hasErrors('tripEndDate')}"-->
+            <!--                              th:errors="*{tripEndDate}" class="text-danger"></span>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="mb-4">-->
+            <!--                <label for="tripNumberOfPAX" class="form-label">Number ofPAX in group</label>-->
+            <!--                <input type="text" class="form-control" id="tripNumberOfPAX" th:field="*{tripNumberOfPAX}"-->
+            <!--                       required-->
+            <!--                       aria-describedby="tripNumberOfPAXHelp">-->
+            <!--                <div id="tripNumberOfPAXHelp" class="form-text">Not more than 45 PAX.</div>-->
+            <!--                <span th:if="${#fields.hasErrors('tripNumberOfPAX')}"-->
+            <!--                      th:errors="*{tripNumberOfPAX}" class="text-danger"></span>-->
+            <!--            </div>-->
+
+            <!--            <button type="submit" class="btn btn-primary">Update Trip</button>-->
+            <!--            </form>-->
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

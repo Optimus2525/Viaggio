@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>All Currencies</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+
+    <h1>List of Currencies</h1>
+
+    <p style="margin-top:20px">
+        <a th:href="@{/}" class="btn btn-primary btn-smb-mb-3">Home</a>&nbsp;&nbsp;&nbsp;
+        <a th:href="@{/}" class="btn btn-primary btn-smb-mb-3">Add new Currency</a>&nbsp;&nbsp;&nbsp;
+        <a th:href="@{/logout}" class="btn btn-info btn-smb-mb-3">Logout</a>&nbsp;&nbsp;&nbsp;
+    </p>
+
+    <div class="col-sm-8">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th><i class="icon_globe"></i>&nbsp;&nbsp;Country</th>
+                <th><i class="icon_info_alt"></i>&nbsp;&nbsp;Currency name</th>
+                <th><i class="icon_info_alt"></i>&nbsp;&nbsp;Currency code</th>
+                <th><i class="icon_info_alt"></i>&nbsp;&nbsp;Currency symbol</th>
+                <th><i class="icon_cogs"></i>&nbsp;&nbsp;Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="country: ${all_countries}">
+                <td th:text="${country.getCountryId()}"></td>
+                <td th:text="${country.getCountryName()}"></td>
+                <td th:text="${country.getCountryISOCode()}"></td>
+                <td th:text="${country.getCountryISDCode()}"></td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-primary" th:alt-title="Edit"
+                           th:href="@{/countries/show_update_form/{id} (id=${country.getCountryId()})}"><i
+                                class="icon_documents_alt"></i></a>
+                        <a class="btn btn-danger" th:alt-title="Delete"
+                           th:href="@{/countries/delete_country/{id} (id=${country.getCountryId()})}"><i
+                                class="icon_close_alt2"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

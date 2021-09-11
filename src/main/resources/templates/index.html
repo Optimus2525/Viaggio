@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+
+
+    <div class="container my-2">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa-laptop"></i>This is where the beauty starts ;-)</h3>
+            </div>
+        </div>
+
+
+
+
+        <p>
+            <a th:href="@{/trips/show_new_trip_form}" class="btn btn-primary btn-smb-mb-3">Add New Trip</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/trips/all_trips}" class="btn btn-primary btn-smb-mb-3">View All Trips</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/countries/show_new_country_form}" class="btn btn-primary btn-smb-mb-3">Add New Country</a>&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/countries/show_all_countries}" class="btn btn-primary btn-smb-mb-3">View All Countries</a>&nbsp;&nbsp;&nbsp;
+        </p>
+        <img class="logo-compact" src="../static/images/logo-text.png" alt="">
+    </div>
+
+
+
+</div>
+</body>
+</html>
