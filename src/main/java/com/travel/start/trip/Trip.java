@@ -2,11 +2,13 @@ package com.travel.start.trip;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 /**
  * User: Ilmars MEDNIS
@@ -15,7 +17,9 @@ import java.time.Period;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Accessors(chain = true)
 
 @Entity
@@ -42,6 +46,9 @@ public class Trip {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate tripEndDate;
 
+    @Column(name = "trip_code", nullable = false, unique = true)
+    private String tripCode;
+
     @Transient
     private Integer tripTotalDays;
 
@@ -51,9 +58,13 @@ public class Trip {
 
     //--- Joint fields start
 
-    private Long trippartnerId;
+//    private Long trippartnerId;
+//
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "trip_partner_id", nullable = false)
+//    private TripPartner tripPartner;
 
-    //--- Joint fields end
+//--- Joint fields end
 
 
     // Getter with days auto calculation
@@ -61,5 +72,16 @@ public class Trip {
         return Period.between(tripStartDate, tripEndDate).getDays() + 1;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Trip trip = (Trip) o;
+        return tripId != null && Objects.equals(tripId, trip.tripId);
+    }
 
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

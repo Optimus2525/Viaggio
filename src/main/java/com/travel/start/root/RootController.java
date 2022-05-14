@@ -1,7 +1,6 @@
 package com.travel.start.root;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +15,6 @@ public class RootController {
 
     @GetMapping({"/","/index"})
     public String index() {
-        return "index";
+        return "old_index";
     }
 }

@@ -19,23 +19,64 @@ public class TripsController {
 
     private final TripService tripService;
 
-    // Show all trips existing in DB paginated
-    @GetMapping("/all_trips")
-    public String getAllTrips(Model model) {
-        return getAllTripsByPage(model, 1);
+    // Show all trips existing in DB paginated and sorted by Trip Name
+    @GetMapping("/all_trips/by_trip_name")
+    public String getAllTripsByName(Model model) {
+        return getAllTripsByNameByPage(model, 1);
     }
 
-    //
-    @GetMapping("/all_trips/page/{pageNumber}")
-    public String getAllTripsByPage(Model model, @PathVariable("pageNumber") int currentPage) {
-        Page<Trip> page = tripService.findAll(currentPage);
+    // Show all trips sorted by Trip Name Ascending
+    @GetMapping("/all_trips/by_trip_name/page/{pageNumber}")
+    public String getAllTripsByNameByPage(Model model, @PathVariable("pageNumber") int currentPage) {
+        Page<Trip> page = tripService.getAllTripsByTripName(currentPage);
         long totalItems = page.getTotalElements();
         int totalPages = page.getTotalPages();
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("all_trips", page.getContent());
-        model.addAttribute("paginationLink", "/trips/all_trips/page/");
+        model.addAttribute("paginationLink", "/trips/all_trips/by_trip_name/page/");
+        return "/trip/all_trips";
+    }
+
+
+    // Show all trips existing in DB paginated and sorted by Start Date
+    @GetMapping("/all_trips/by_start_date")
+    public String getAllTripsByStartDate(Model model) {
+        return getAllTripsByStartDateByPage(model, 1);
+    }
+
+    // Show all trips sorted by Trip Start Date Descending
+    @GetMapping("/all_trips/by_start_date/page/{pageNumber}")
+    public String getAllTripsByStartDateByPage(Model model, @PathVariable("pageNumber") int currentPage) {
+        Page<Trip> page = tripService.getAllTripsByTripStartDate(currentPage);
+        long totalItems = page.getTotalElements();
+        int totalPages = page.getTotalPages();
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("all_trips", page.getContent());
+        model.addAttribute("paginationLink", "/trips/all_trips/by_start_date/page/");
+        return "/trip/all_trips";
+    }
+
+    // Show all trips happening right now paginated
+    @GetMapping("/all_trips/current")
+    public String getAllCurrentTrips(Model model) {
+        return getAllCurrentTripsByPage(model, 1);
+    }
+
+    // Show all trips happening right now
+    @GetMapping("/all_trips/current/page/{pageNumber}")
+    public String getAllCurrentTripsByPage(Model model, @PathVariable("pageNumber") int currentPage) {
+        Page<Trip> page = tripService.getCurrentActualTrips(currentPage);
+        long totalItems = page.getTotalElements();
+        int totalPages = page.getTotalPages();
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("all_trips", page.getContent());
+        model.addAttribute("paginationLink", "/trips/all_trips/current/page/");
         return "/trip/all_trips";
     }
 

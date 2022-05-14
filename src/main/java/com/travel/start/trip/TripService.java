@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -22,13 +23,37 @@ public class TripService {
 
     private final TripRepository tripRepository;
 
-    // Find all trips paginated
-    public Page<Trip> findAll(int pageNumber) {
+    // Find all trips paginated by Id Descending
+    public Page<Trip> getAllTripsByTripId(int pageNumber) {
         Pageable pageable = PageRequest.of(pageNumber -1, 8);
-        return tripRepository.findAll(pageable);
+        return tripRepository.findAllByOrderByTripIdDesc(pageable);
     }
 
-    public List<Trip> getByName(String tripName) {
+    // Find all trips paginated by Start Date Descending
+    public Page<Trip> getAllTripsByTripStartDate(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber -1, 8);
+        return tripRepository.findAllByOrderByTripStartDateDesc(pageable);
+    }
+
+    // Find all trips paginated by Start Date Descending
+    public Page<Trip> getAllTripsByTripCountry(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber -1, 8);
+        return tripRepository.findAllByOrderByTripCountryAsc(pageable);
+    }
+
+    // Find all trips paginated by Trip Name Descending
+    public Page<Trip> getAllTripsByTripName(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 8);
+        return tripRepository.findAllByOrderByTripNameAsc(pageable);
+    }
+
+    // Find all trips paginated happening Right Now
+    public Page<Trip> getCurrentActualTrips(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 8);
+        return tripRepository.findAllCurrentTrips(pageable);
+    }
+
+    public List<Trip> getTripByTripName(String tripName) {
         return tripRepository.findTripByTripName(tripName);
     }
 
@@ -36,7 +61,7 @@ public class TripService {
         tripRepository.deleteById(id);
     }
 
-    public List<Trip> findTripByCountry(String tripCountry) {
+    public List<Trip> getAllTripsByCountryDesc(String tripCountry) {
         return tripRepository.findTripByTripCountry(tripCountry);
     }
 

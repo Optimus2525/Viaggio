@@ -117,10 +117,11 @@
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
                         <ul class="sub">
-                            <li><a class="" href="layout.html">Upcoming Trips</a></li>
-                            <li><a class="" href="#">Actual trips</a></li>
+                            <li><a class="" href="#">Upcoming Trips</a></li>
+                            <li><a class="" th:href="@{/trips/all_trips/current}">Actual, current trips</a></li>
                             <li><a class="" href="#">Ended trips</a></li>
-                            <li><a class="" th:href="@{/trips/all_trips}">All trips</a></li>
+                            <li><a class="" th:href="@{/trips/all_trips/by_trip_name}">All trips by Name</a></li>
+                            <li><a class="" th:href="@{/trips/all_trips/by_start_date}">All trips by Start Date</a></li>
                             <li><a class="" th:href="@{/trips/show_new_trip_form}">Add New Trip</a></li>
                         </ul>
                     </li>

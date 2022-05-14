@@ -5,7 +5,6 @@
 <head>
     <title>All trips</title>
 </head>
-
 <body>
 
 <div layout:fragment="content">
@@ -15,7 +14,7 @@
         <div class="container my-2">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-compass"></i> All trips</h3>
+                    <h3 class="page-header"><i class="fa fa-compass"></i> All trips by Start Date</h3>
                 </div>
             </div>
 
@@ -47,7 +46,7 @@
 
                     <!-- Next page-->
                     <a th:if="${currentPage < totalPages}" th:href="@{${paginationLink} + ${currentPage + 1}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next</a>
-                    <span th:unless="${currentPage < totalPages}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next</span>
+                    <span th:unless="${currentPage < totalPages}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last</span>
 
                     <!-- Last page-->
                     <a th:if="${currentPage < totalPages}" th:href="@{${paginationLink} + ${totalPages}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last</a>
